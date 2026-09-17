@@ -1,6 +1,7 @@
 import styles from "./MovieModal.module.css";
 import {useEffect, useMemo, useState} from "react";
 import type {MovieItem} from "../../../types/OMDbTypes.ts";
+import * as React from "react";
 
 interface MovieModalProps {
     movie: MovieItem;
@@ -42,9 +43,9 @@ export interface MovieDetails {
 
 const viteomdapikey = import.meta.env.VITE_OMD_API_KEY;
 
-const MovieModal = ({movie}: MovieModalProps) => {
+const MovieModal = ({movie, closeModal}: MovieModalProps) => {
     const [movieDetails, setMovieDetails] = useState<MovieDetails | null>(null);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
     const detailEntries = useMemo(() => {
@@ -101,11 +102,16 @@ const MovieModal = ({movie}: MovieModalProps) => {
         return () => {
             controller.abort();
         }
-    }, [])
+    }, [movie.imdbID])
+
+    const handleCurtainClick = (event: React.MouseEvent<HTMLDivElement>) => {
+        event.stopPropagation();
+        closeModal()
+    }
 
     return (
         <div className={styles.container}>
-            <div className={styles.curtain}></div>
+            <div className={styles.curtain} onClick={handleCurtainClick}></div>
             <div className={styles.content}>
                 {
                     isLoading && <div>Loading...</div>
