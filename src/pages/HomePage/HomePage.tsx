@@ -60,27 +60,25 @@ const HomePage = () => {
     }
 
     const handleSearch = () => {
-        if (searchQuery.length < 3) return;
-
         fetchSearch(searchQuery);
     }
 
     return (
         <div className={styles.app}>
-            <section className={styles.header}>
+            <header className={styles.header}>
                 <h2>Movie Finder</h2>
                 <SearchInput
                     query={searchQuery}
                     setQuery={setSearchQuery}
                     onSearch={handleSearch}
                 />
-            </section>
+            </header>
             <section className={styles.searchResults}>
                 {
                     isLoading && <div>Loading...</div>
                 }
                 {
-                    error && <div>An error occurred: {error}</div>
+                    error && <div>{error}</div>
                 }
                 {
                     !isLoading && !error && searchResults.length > 0 && (

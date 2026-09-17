@@ -1,0 +1,17 @@
+.inputContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-full);
+    padding: 6px 6px 6px 12px
+}
+
+.searchButton {
+    border-radius: var(--radius-full);
+    background-color: var(--accent-primary);
+    color: var(--text-on-accent);
+    padding: 4px 8px;
+}

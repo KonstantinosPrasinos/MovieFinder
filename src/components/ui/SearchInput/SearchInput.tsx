@@ -16,7 +16,10 @@ const SearchInput = ({ query, setQuery, onSearch }: SearchBarProps) => {
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder={"Search"}
             />
-            <button onClick={onSearch}>
+            <button
+                className={styles.searchButton}
+                onClick={onSearch}
+            >
                 Search
             </button>
         </div>
