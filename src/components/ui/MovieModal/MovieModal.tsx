@@ -48,6 +48,7 @@ const MovieModal = ({movie, closeModal}: MovieModalProps) => {
     const [movieDetails, setMovieDetails] = useState<MovieDetails | null>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [hasPosterImageError, setHasPosterImageError] = useState(false);
 
     const detailEntries = useMemo(() => {
         const excludedKeys = new Set(['Poster', 'Response', 'Ratings', 'Title']);
@@ -122,11 +123,15 @@ const MovieModal = ({movie, closeModal}: MovieModalProps) => {
                 }
                 {
                     !isLoading && !error && <div className={styles.details}>
-                        <div className={styles.posterImage}>
-                            {movie.Poster !== 'N/A' ? (
-                                <img src={movie.Poster} className={styles.posterImage} alt={`${movie.Title} poster`} />
+                        <div className={styles.posterContainer}>
+                            {(movie.Poster !== 'N/A' && !hasPosterImageError) ? (
+                                <img
+                                    src={movie.Poster}
+                                    className={styles.posterImage} alt={`${movie.Title} poster`}
+                                    onError={() => setHasPosterImageError(true)}
+                                />
                             ) : (
-                                <div className="no-poster-placeholder">No image available</div>
+                                <div className={styles.movieError}>No image available</div>
                             )}
                         </div>
                         <div className={styles.textDetails}>

@@ -41,12 +41,18 @@
     align-items: start;
 }
 
-.posterImage img {
+.posterContainer > * {
     width: 100%;
     aspect-ratio: 2 / 3;
     object-fit: cover;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border-radius: 6px
+}
+
+.movieError {
+    border: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .textDetails {

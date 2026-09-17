@@ -10,11 +10,19 @@
     padding: 4px;
 }
 
-.posterImage {
+
+.posterContainer > * {
     width: 100%;
     aspect-ratio: 2 / 3;
     object-fit: cover;
     border-radius: 6px
+}
+
+.movieError {
+    border: 1px solid var(--border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .movieTextContents {
