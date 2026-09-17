@@ -3,6 +3,7 @@ import SearchInput from "../../components/ui/SearchInput/SearchInput.tsx";
 import {useState} from "react";
 import type {MovieItem, OMDbResponse} from "../../types/OMDbTypes.ts";
 import MovieCard from "../../components/ui/MovieCard/MovieCard.tsx";
+import MovieModal from "../../components/ui/MovieModal/MovieModal.tsx";
 
 const viteomdapikey = import.meta.env.VITE_OMD_API_KEY;
 
@@ -11,6 +12,7 @@ const HomePage = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [searchResults, setSearchResults] = useState<MovieItem[]>([]);
+    const [selectedMovie, setSelectedMovie] = useState<MovieItem | null>(null);
 
     const fetchSearch = async (query: string) => {
         setIsLoading(true);
@@ -69,10 +71,15 @@ const HomePage = () => {
                 }
                 {
                     !isLoading && !error && searchResults.length > 0 && searchResults.map(result => (
-                        <MovieCard movie={result} />
+                        <MovieCard
+                            key={result.imdbID}
+                            movie={result}
+                            setSelectedMovie={setSelectedMovie}
+                        />
                     ))
                 }
             </section>
+            {selectedMovie && <MovieModal movieId={selectedMovie.imdbID} />}
         </div>
     );
 };
