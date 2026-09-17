@@ -79,7 +79,12 @@ const HomePage = () => {
                     ))
                 }
             </section>
-            {selectedMovie && <MovieModal movieId={selectedMovie.imdbID} />}
+            {selectedMovie &&
+                <MovieModal
+                    closeModal={() => setSelectedMovie(null)}
+                    movie={selectedMovie}
+                />
+            }
         </div>
     );
 };

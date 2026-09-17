@@ -27,4 +27,32 @@
     background-color: var(--bg-surface);
     border-radius: var(--radius-md);
     padding: 10px;
+
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+}
+
+.details {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 1.5rem;
+    overflow-y: auto;
+    align-items: start;
+}
+
+.posterImage img {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.textDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+    height: 100%;
 }
