@@ -1,21 +1,8 @@
 import styles from "./HomePage.module.css";
 import SearchInput from "../../components/ui/SearchInput/SearchInput.tsx";
 import {useState} from "react";
-
-interface MovieItem {
-    Title: string;
-    Year: string;
-    imdbID: string;
-    Type: string;
-    Poster: string;
-}
-
-interface OMDbResponse {
-    Response: 'True' | 'False';
-    Search?: MovieItem[];
-    totalResults?: string;
-    Error?: string;
-}
+import type {MovieItem, OMDbResponse} from "../../types/OMDbTypes.ts";
+import MovieCard from "../../components/ui/MovieCard/MovieCard.tsx";
 
 const viteomdapikey = import.meta.env.VITE_OMD_API_KEY;
 
@@ -73,7 +60,7 @@ const HomePage = () => {
                     onSearch={handleSearch}
                 />
             </header>
-            <section className={styles.searchResults}>
+            <section className={styles.movieGrid}>
                 {
                     isLoading && <div>Loading...</div>
                 }
@@ -81,15 +68,9 @@ const HomePage = () => {
                     error && <div>{error}</div>
                 }
                 {
-                    !isLoading && !error && searchResults.length > 0 && (
-                        <div>
-                            {searchResults.map((result) => (
-                                <div key={result.imdbID}>
-                                    {result.Title}
-                                </div>
-                            ))}
-                        </div>
-                    )
+                    !isLoading && !error && searchResults.length > 0 && searchResults.map(result => (
+                        <MovieCard movie={result} />
+                    ))
                 }
             </section>
         </div>
