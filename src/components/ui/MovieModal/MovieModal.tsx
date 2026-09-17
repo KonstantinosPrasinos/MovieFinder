@@ -2,6 +2,7 @@ import styles from "./MovieModal.module.css";
 import {useEffect, useMemo, useState} from "react";
 import type {MovieItem} from "../../../types/OMDbTypes.ts";
 import * as React from "react";
+import {IconX} from "@tabler/icons-react";
 
 interface MovieModalProps {
     movie: MovieItem;
@@ -131,12 +132,15 @@ const MovieModal = ({movie, closeModal}: MovieModalProps) => {
                         <div className={styles.textDetails}>
                             <h3>{movie.Title}</h3>
                             {detailEntries && detailEntries.map(([key, value]) => (
-                                <div key={key} className="detail-item">
-                                    <span className="detail-label">{key}: </span>
-                                    <span className="detail-value">{String(value)}</span>
+                                <div key={key}>
+                                    <span className={styles.detailLabel}>{key}: </span>
+                                    <span className={styles.detailValue}>{String(value)}</span>
                                 </div>
                             ))}
                         </div>
+                        <button onClick={closeModal}>
+                            <IconX></IconX>
+                        </button>
                     </div>
                 }
             </div>
@@ -144,4 +148,4 @@ const MovieModal = ({movie, closeModal}: MovieModalProps) => {
     );
 };
 
-export default MovieModal;
+export default React.memo(MovieModal);

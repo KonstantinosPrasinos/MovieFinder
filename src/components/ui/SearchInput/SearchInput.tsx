@@ -1,5 +1,6 @@
 import styles from "./SearchInput.module.css"
 import type {Dispatch, SetStateAction} from "react";
+import {IconSearch} from "@tabler/icons-react";
 
 interface SearchBarProps {
     query: string;
@@ -20,7 +21,7 @@ const SearchInput = ({ query, setQuery, onSearch }: SearchBarProps) => {
                 className={styles.searchButton}
                 onClick={onSearch}
             >
-                Search
+                <IconSearch size={20} />
             </button>
         </div>
     );

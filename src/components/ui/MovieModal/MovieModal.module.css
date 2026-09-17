@@ -35,7 +35,7 @@
 
 .details {
     display: grid;
-    grid-template-columns: 280px 1fr;
+    grid-template-columns: 280px 1fr 24px;
     gap: 1.5rem;
     overflow-y: auto;
     align-items: start;
@@ -55,4 +55,12 @@
     gap: 0.25rem;
     flex-wrap: wrap;
     height: 100%;
+}
+
+.detailLabel {
+    color: var(--text-secondary);
+}
+
+.detailValue {
+    color: var(--text-primary);
 }

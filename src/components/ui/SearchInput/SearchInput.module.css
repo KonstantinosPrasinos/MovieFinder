@@ -13,5 +13,9 @@
     border-radius: var(--radius-full);
     background-color: var(--accent-primary);
     color: var(--text-on-accent);
-    padding: 4px 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px;
+    height: 32px;
 }
