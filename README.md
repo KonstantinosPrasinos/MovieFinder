@@ -1,75 +1,22 @@
-# React + TypeScript + Vite
+# Movie Finder
+This is a basic project for a React + Vite app that fetches and displays movie data from [OMDb](https://www.omdbapi.com/).
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Current Features
+1. Searching through the OMDb movie catalog using titles
+2. Clicking a movie card to expand a modal with more details
 
-Currently, two official plugins are available:
+## How to run\
+1. Obtain an api key from OMDb
+2. Make sure you have node installed. If you don't you can find it [here](https://nodejs.org/en/download).
+3. Clone the repository: ```git clone https://github.com/KonstantinosPrasinos/MovieFinder.git```
+4. Install the dependencies: ```npm install```
+5. Create a fila called ".env" in the project directory and add the following: ```VITE_OMD_API_KEY=<your-api-key-here>```
+6. Run the project: ```npm run dev```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
-
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+## Missing/Future Features
+1. Displaying multiple pages of results (pagination)
+2. Links to websites the user can watch a selected movie
+3. Rendering the different movie reviews
+4. Searching using parameters other than title
+5. A default set of movies for when the page loads
+6. Animating the modal closing/opening
