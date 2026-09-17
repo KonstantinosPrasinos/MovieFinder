@@ -1,20 +1,22 @@
 import styles from "./SearchInput.module.css"
+import type {Dispatch, SetStateAction} from "react";
 
 interface SearchBarProps {
     query: string;
-    onChange: (query: string) => void;
+    setQuery: Dispatch<SetStateAction<string>>;
+    onSearch: () => void;
 }
 
-const SearchInput = ({ query, onChange }: SearchBarProps) => {
+const SearchInput = ({ query, setQuery, onSearch }: SearchBarProps) => {
     return (
         <div className={styles.inputContainer}>
             <input
                 type={"text"}
                 value={query}
-                onChange={(e) => onChange(e.target.value)}
+                onChange={(e) => setQuery(e.target.value)}
                 placeholder={"Search"}
             />
-            <button>
+            <button onClick={onSearch}>
                 Search
             </button>
         </div>

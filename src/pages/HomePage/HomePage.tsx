@@ -35,27 +35,34 @@ const HomePage = () => {
             )
 
             if (!response.ok) {
-                console.error("Could not find any results.");
+                throw new Error(`HTTP error: ${response.status}`);
             }
 
             const data: OMDbResponse = await response.json();
 
             if (data.Response === 'False' || data.Search === undefined) {
-                console.error(data.Response);
+                throw new Error(data.Error);
             } else {
                 setSearchResults(data.Search)
             }
         } catch (error) {
+            let errorMessage = `An error occurred while fetching results`;
+
+            if (error instanceof Error) {
+                errorMessage += ` (${error.message})`;
+            }
+
+            setError(errorMessage);
             console.error(error);
+        } finally {
+            setIsLoading(false);
         }
     }
 
-    const handleSearch = (query: string) => {
-        setSearchQuery(query);
-
+    const handleSearch = () => {
         if (searchQuery.length < 3) return;
 
-        fetchSearch(query);
+        fetchSearch(searchQuery);
     }
 
     return (
@@ -64,12 +71,19 @@ const HomePage = () => {
                 <h2>Movie Finder</h2>
                 <SearchInput
                     query={searchQuery}
-                    onChange={handleSearch}
+                    setQuery={setSearchQuery}
+                    onSearch={handleSearch}
                 />
             </section>
             <section className={styles.searchResults}>
                 {
-                    searchResults.length > 0 && (
+                    isLoading && <div>Loading...</div>
+                }
+                {
+                    error && <div>An error occurred: {error}</div>
+                }
+                {
+                    !isLoading && !error && searchResults.length > 0 && (
                         <div>
                             {searchResults.map((result) => (
                                 <div key={result.imdbID}>
